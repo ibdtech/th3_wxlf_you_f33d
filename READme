@@ -1,0 +1,74 @@
+Th3 Wxlf you F33d
+Advanced intelligence analysis for bug bounty hunters. Takes raw vulnerability scan data and transforms it into actionable attack chains and exploitation strategies.
+What it does
+This tool reads output from vulnerability scanners (primarily Dark Wxlf format) and performs deep analysis to find:
+
+Hidden attack chains by linking related vulnerabilities
+Shadow assets like forgotten subdomains and staging environments
+Exploitation pathways with step-by-step guides
+Technology stack fingerprinting from vulnerability evidence
+Critical vulnerabilities with proof-of-concept examples
+
+Instead of just listing vulns, it thinks like an attacker and shows you how to chain them together for maximum impact.
+Features
+Attack Chain Detection
+Automatically identifies vulnerability combinations that can be chained for privilege escalation, data exfiltration, or account takeover.
+Shadow Asset Discovery
+Finds forgotten staging servers, development environments, and misconfigured subdomains that programs often miss.
+Smart Tech Stack Analysis
+Infers backend technologies from vulnerability patterns and URLs to help you target exploits better.
+Bug Bounty Safe Mode
+Built-in rate limiting, scope filtering, and request throttling to keep you compliant with program rules.
+Interactive Analysis
+Deep dive into specific vulnerabilities, generate custom exploit templates, and search through findings on the fly.
+
+
+Installation
+bashgit clone https://github.com/ibdtech/th3_wxlf_you_f33d.git
+cd th3_wxlf_you_f33d
+pip install -r requirements.txt
+Dependencies: requests, termcolor, pyfiglet (optional)
+Usage
+Basic usage with scan file:
+bashpython3 twyf.py scan_results.txt
+Interactive mode (manual data entry):
+bashpython3 twyf.py
+Enable bug bounty safe mode:
+bashpython3 twyf.py
+# Select option 9 from menu
+The tool auto-detects Dark Wxlf output files in the current directory and presents a selection menu.
+How it works
+
+Loads vulnerability data from scan output or manual input
+Extracts subdomains, endpoints, and tech indicators from URLs
+Analyzes vulnerabilities for chaining opportunities
+Maps potential attack paths based on vulnerability proximity
+Generates exploitation guides with PoC code where applicable
+Presents findings through an interactive menu system
+
+The attack chain engine looks for logical vulnerability combinations like IDOR + CSRF, XSS + session hijacking, or path traversal + RCE possibilities.
+Safe Mode
+When hunting on bug bounty programs, enable safe mode to:
+
+Limit requests per second (configurable, default 10/s)
+Filter operations to in-scope domains only
+Add delays between requests to avoid DoS triggers
+Respect robots.txt
+Track and log all requests made
+
+Configure scope rules at startup to ensure you never accidentally test out-of-scope assets.
+Output
+The tool provides several analysis views:
+
+Summary dashboard with key metrics
+Attack chain visualization with exploitation steps
+Shadow asset list sorted by risk
+Technology breakdown per subdomain
+Interactive search and deep-dive modes
+
+All findings include severity ratings, affected URLs, and suggested next steps.
+Notes
+This tool is for authorized security testing only. Always get written permission before testing any target. When participating in bug bounty programs, read the rules carefully and stay within scope.
+The analysis quality depends on your input data quality. Feed it comprehensive scan results for best results.
+License
+MIT
